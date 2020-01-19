@@ -62,10 +62,17 @@ func indexPost(c *gin.Context) {
 		return
 	}
 
+	log.Printf("%+v", resp)
+
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
-		c.HTML(http.StatusInternalServerError, indexTemplate, nil)
+		db = connectToDatabase()
+		db.Select("title, url, image_url, description, created_at, updated_at").Find(&recipes)
+		c.HTML(http.StatusInternalServerError, indexTemplate, gin.H{
+			"error":   "Unable to retrieve URL",
+			"recipes": recipes,
+		})
 		return
 	}
 
