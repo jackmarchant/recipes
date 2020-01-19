@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Recipes</title>
+        <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="assets/styles.css" rel="stylesheet" />
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+    <body>
+        <div class="container mt-10">
+            <h1>Recipes</h1>
+            <form method="POST" action="/">
+                <div class="form-group">
+                  <label class="d-none" for="recipeUrl">Recipe URL</label>
+                  <input type="text" class="form-control" name="recipeUrl" id="recipeUrl" aria-describedby="recipeUrlHelp" placeholder="https://taste.com.au/recipe...">
+                  <small id="recipeUrlHelp" class="form-text text-muted">Paste in a link to a recipe to save it.</small>
+                </div>
+            </form>
+
+            <div class="card-deck">
+                {{ range .recipes }}
+                  <div class="card">
+                    <img class="card-img-top" src="{{ .ImageURL }}" alt="{{ .Title }}">
+                    <div class="card-body">
+                      <h5 class="card-title"> {{ .Title }}</h5>
+                      <p class="card-text">{{ .Description }}</p>
+                    </div>
+                    <div class="card-footer">
+                      <a href="{{ .URL }}" target="_blank" rel="noopener nofollow" class="btn btn-primary">View</a>
+                    </div>
+                  </div>
+                {{ end }}
+              </div>
+        </div>
+        
+        
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
