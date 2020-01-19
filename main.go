@@ -80,7 +80,7 @@ func indexPost(c *gin.Context) {
 }
 
 func connectToDatabase() *gorm.DB {
-	db, err := gorm.Open("mysql", os.Getenv("DATABASE_URL"))
+	db, err := gorm.Open("mysql", os.Getenv("DATABASE_URL")+"?charset=utf8&parseTime=True")
 
 	if err != nil {
 		panic(err.Error())
